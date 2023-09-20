@@ -535,9 +535,9 @@ class CellposeModel(UnetModel):
                 styles.append(stylei)
             return masks, flows, styles
         
-        else:
-            if not model_loaded and (isinstance(self.pretrained_model, list) and not net_avg and not loop_run):
-                self.net.load_model(self.pretrained_model[0], device=self.device)
+        else: # load model outside.
+            # if not model_loaded and (isinstance(self.pretrained_model, list) and not net_avg and not loop_run):
+            #     self.net.load_model(self.pretrained_model[0], device=self.device)
                 
             # reshape image (normalization happens in _run_cp)
             x = transforms.convert_image(x, channels, channel_axis=channel_axis, z_axis=z_axis,
